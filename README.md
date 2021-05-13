@@ -1,4 +1,4 @@
-# Bewässerungssystem
+# [Bewässerungssystem](https://github.com/jonas-burkhalter/irrigation-system)
 ## Projektidee
 Das Ziel dieses Projektes ist es ein Bewässerungssystem zu erstellen. Dazu soll die Bodenfeuchtigkeit gemessen werden und gegebenenfalls eine Pumpe aktiviert werden. 
 
