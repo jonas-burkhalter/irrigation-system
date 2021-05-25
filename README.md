@@ -36,10 +36,12 @@ Während den Recherchen für geeignete Sensoren fand sich folgender Bodenfeuchti
 
 ## Planung
 ### Material
-* ESP32
+* [ESP32](https://www.bastelgarage.ch/firebeetle-esp32-iot-mikrocontroller-mit-wifi?search=firebeetle)
 * [Bodenfeuchtesensor](https://www.bastelgarage.ch/bauteile/bewasserung-pumpen-ventile/m5stack-bewasserungs-unit-mit-bodenfeuchtesensor-und-pumpe)
 * [Solar Panel mit Laderegler](https://www.bastelgarage.ch/solar-lipo/budget-solar-set-2w-mit-laderegler-fur-lipo-akku)
 * [Akku](https://www.bastelgarage.ch/solar-lipo/lipo-akku-1500mah-jst-2-0-lithium-ion-polymer)
+* [Adapter](https://www.bastelgarage.ch/m5stack-adapter-grove-auf-grove-5-stuck?search=M5Stack)
+* [Kabel](https://www.bastelgarage.ch/50cm-m5stack-grove-kabel-2-stuck)
 
 ### Etappierung
  * Auslesen der Bodenfeuchtigkeit
