@@ -1,0 +1,122 @@
+{
+    "folders": [
+        {
+            "path": "./"
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "msjsdiag.debugger-for-chrome",
+            "firefox-devtools.vscode-firefox-debug",
+            "dbaeumer.vscode-eslint",
+            "pkief.material-icon-theme",
+            "esbenp.prettier-vscode",
+            "gruntfuggly.todo-tree",
+            "octref.vetur",
+            "lacroixdavid1.vscode-format-context-menu",
+            "vuetifyjs.vuetify-vscode"
+        ]
+    },
+    "settings": {
+        "files.encoding": "utf8",
+
+        // --------------------------- //
+        // Exclueding node, build, ... //
+        // --------------------------- //
+        "files.exclude": {
+            // Folders (e.g. "somefolder/": true)
+            "node_modules/": true
+            // File (e.g. "somefile": true)
+        },
+        // Ordner und Dateien die exluded sind müssen NICHT von der Suche exlueded werden
+        "search.exclude": {
+            // Folders (e.g. "somefolder/": true)
+            // File (e.g. "somefile": true)
+        },
+
+        // ------ //
+        // Layout //
+        // ------ //
+        "workbench.iconTheme": "material-icon-theme",
+        "material-icon-theme.activeIconPack": "vue_vuex",
+
+        "material-icon-theme.folders.associations": {
+            "store": "Vue"
+        },
+
+        // ------ //
+        // Editor //
+        // ------ //
+        "editor.codeActionsOnSave": {
+            // "source.fixAll.eslint": true
+        },
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+
+        // ---------- //
+        // Extensions //
+        // ---------- //
+        "eslint.enable": false,
+        "eslint.validate": ["html", "javascript", "typescript", "vue"],
+
+        "todo-tree.highlights.defaultHighlight": {
+            "icon": "pencil",
+            "iconColour": "dimgray",
+            "type": "text",
+            "foreground": "red",
+            "background": "yellow",
+            "opacity": 100
+        },
+        "todo-tree.highlights.customHighlight": {
+            "FIXME": {
+                "foreground": "black",
+                "background": "cyan",
+                "icon": "unverified",
+                "iconColour": "orange"
+            },
+            "HACK": {
+                "foreground": "black",
+                "background": "cyan",
+                "icon": "info",
+                "iconColour": "orange"
+            },
+            "TODO": {
+                "icon": "alert",
+                "iconColour": "red"
+            }
+        },
+        "todo-tree.regex.regexCaseSensitive": false,
+        "todo-tree.filtering.excludeGlobs": ["**/build/**", "**/jquery*", "**/jstree*", "**/vee*"],
+        "todo-tree.general.tags": ["TODO", "HACK", "FIXME"],
+
+        "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+        "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+        "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+
+        "prettier.printWidth": 170,
+        "prettier.singleQuote": true,
+        "prettier.tabWidth": 4,
+        "prettier.trailingComma": "none",
+        "prettier.useEditorConfig": true,
+        "prettier.vueIndentScriptAndStyle": true,
+
+        "vetur.format.defaultFormatter.css": "prettier",
+        "vetur.format.defaultFormatter.html": "prettyhtml",
+        "vetur.format.defaultFormatter.less": "prettier",
+        "vetur.format.defaultFormatter.postcss": "prettier",
+        "vetur.format.defaultFormatter.js": "prettier-eslint",
+        "vetur.format.defaultFormatter.scss": "prettier",
+        "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+        "vetur.format.defaultFormatter.ts": "prettier",
+
+        "vetur.format.options.tabSize": 4,
+        "vetur.format.options.useTabs": false,
+
+        // language-specific setting
+        "[vue]": {
+            "editor.defaultFormatter": "octref.vetur"
+        },
+        "svn.delete.ignoredRulesForDeletedFiles": [".vscode\\settings.json"]
+    }
+}

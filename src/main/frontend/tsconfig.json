@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "jsx": "preserve",
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "strict": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "sourceMap": true,
+        "target": "esnext",
+        "types": ["vuetify", "node"]
+    },
+    "exclude": ["node_modules"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"]
+}
