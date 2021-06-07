@@ -63,13 +63,22 @@ module main_positiv() {
 }
 
 
-module split() {             
+module split() {                    
     translate([100, 0, 0]) {
         cube([110, 210, 10]);  
     }            
     translate([0, 100, 0]) {
         cube([210, 110, 10]);  
-    }      
+    }   
+           
+    translate([93, 30, 0]) {
+       cylinder(r=3, h=10, $fa=0.5, $fs=0.5);  
+    }
+                 
+    translate([93, 90, 0]) {
+       cylinder(r=3, h=10, $fa=0.5, $fs=0.5); 
+    }
 }
+
 
 

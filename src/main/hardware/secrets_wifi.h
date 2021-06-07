@@ -1,2 +1,2 @@
-const char* WIFI_SSID = "my_ssid";
-const char* WIFI_PASSWORD = "my_password";
+const char* WIFI_SSID = "wgp-68614";
+const char* WIFI_PASSWORD = "FMvj-XN7P-UGPF-VFpN";

@@ -12,7 +12,7 @@ module sensor() {
 }
 
 length = 24;
-width = 56;
+width = 55;
 height = 7;
 
 padding = 5;
@@ -49,7 +49,7 @@ module holes() {
     hole_width = 16;
     space = 8;
     
-    translate([(length_p)/2,24,0]) {
+    translate([(length_p)/2,25,0]) {
         union() {
             for (i = [0:count-1]) {
                 translate([0, ((hole_width + space) * i), 0]) {

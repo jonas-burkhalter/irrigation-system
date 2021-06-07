@@ -100,11 +100,11 @@ module adapter() {
 module split() {          
     cube([100, 100, 10]);  
            
-    translate([30, 107, 0]) {
+    translate([107, 30, 0]) {
        cylinder(r=3, h=10, $fa=0.5, $fs=0.5);  
     }
                  
-    translate([90, 107, 0]) {
+    translate([107, 90, 0]) {
        cylinder(r=3, h=10, $fa=0.5, $fs=0.5); 
     }
 }
