@@ -1,11 +1,11 @@
-import { Unit as Entry } from '@/model/Unit';
+import { Unit as Entity } from '@/model/Unit';
 import { MutationTree } from 'vuex';
 import { IUnitState } from './state';
 
-export const ENTRIES = 'entries';
+export const ENTITIES = 'entities';
 
 export const mutations: MutationTree<IUnitState> = {
-    [ENTRIES](state, value: Array<Entry>) {
+    [ENTITIES](state, value: Array<Entity>) {
         state.units = value;
     }
 };

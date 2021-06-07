@@ -7,7 +7,7 @@ export default class UnitService extends BaseService implements IUnitService {
 
     constructor() {
         super();
-        this.RESOURCE_URL = `${this.BASE_URL}/unit`;
+        this.RESOURCE_URL = `${this.BASE_URL}/units`;
     }
 
     public async create(entity: Unit): Promise<Unit> {

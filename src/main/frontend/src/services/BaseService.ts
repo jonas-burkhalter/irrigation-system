@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 export const JSON_WEB_TOKEN = 'JsonWebToken';
 
 export default class BaseServie {
-    protected BASE_URL: string | undefined = 'http://distsys.ch:1450'; //process.env.VUE_APP_BASE_URL;
+    protected BASE_URL: string | undefined = process.env.VUE_APP_BASE_URL;
 
     protected deleteConfig!: AxiosRequestConfig;
     protected getConfig!: AxiosRequestConfig;

@@ -1,6 +1,6 @@
 <template>
     <v-app :style="styleApp" dark>
-        <!-- <navigation v-model="drawer" :theme="theme" /> -->
+        <navigation v-model="drawer" :theme="theme" />
 
         <v-app-bar :style="styleAppBar" :clipped-left="false" :fixed="false" color="primary" app>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" />

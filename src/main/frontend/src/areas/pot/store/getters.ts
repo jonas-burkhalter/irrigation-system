@@ -2,8 +2,8 @@ import { IRootState } from '@/plugins/store';
 import { GetterTree } from 'vuex';
 import { IPotState } from './state';
 
-export const ENTRIES = 'entries';
+export const ENTITIES = 'entities';
 
 export const getters: GetterTree<IPotState, IRootState> = {
-    [ENTRIES]: (state) => state.pots
+    [ENTITIES]: (state) => state.pots
 };

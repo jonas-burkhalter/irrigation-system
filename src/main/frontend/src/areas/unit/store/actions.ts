@@ -3,8 +3,8 @@ import { ActionTree } from 'vuex';
 import { IUnitState } from './state';
 
 import { unitService as service } from '@/areas/unit/services/UnitService';
-import { ENTRIES } from '@/areas/unit/store/mutations';
-import { Unit as Entry } from '@/model/Unit';
+import { ENTITIES } from '@/areas/unit/store/mutations';
+import { Unit as Entity } from '@/model/Unit';
 
 export const CREATE = 'create';
 export const DELETE = 'delete';
@@ -13,29 +13,29 @@ export const GET = 'get';
 export const GET_ALL = 'getAll';
 
 export const actions: ActionTree<IUnitState, IRootState> = {
-    async [CREATE]({ dispatch }: any, todo: Entry) {
-        return service.create(todo).then(() => {
+    async [CREATE]({ dispatch }: any, entity: Entity) {
+        return service.create(entity).then(() => {
             dispatch(GET_ALL);
         });
     },
-    async [DELETE]({ dispatch }: any, todo: Entry) {
-        return service.delete(todo.id).then(() => {
+    async [DELETE]({ dispatch }: any, entity: Entity) {
+        return service.delete(entity.id).then(() => {
             dispatch(GET_ALL);
         });
     },
-    async [EDIT]({ dispatch }: any, todo: Entry) {
-        return service.edit(todo).then(() => {
+    async [EDIT]({ dispatch }: any, entity: Entity) {
+        return service.edit(entity).then(() => {
             dispatch(GET_ALL);
         });
     },
-    async [GET]({ commit }: any, id: number) {
-        return service.get(id).then((response: Entry) => {
+    async [GET]({}: any, id: number) {
+        return service.get(id).then((response: Entity) => {
             return response;
         });
     },
     async [GET_ALL]({ commit }: any) {
-        return service.get_all().then((response: Array<Entry>) => {
-            commit(ENTRIES, response);
+        return service.get_all().then((response: Array<Entity>) => {
+            commit(ENTITIES, response);
         });
     }
 };

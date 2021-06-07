@@ -2,10 +2,10 @@ import { Pot } from '@/model/Pot';
 import { MutationTree } from 'vuex';
 import { IPotState } from './state';
 
-export const ENTRIES = 'entries';
+export const ENTITIES = 'entities';
 
 export const mutations: MutationTree<IPotState> = {
-    [ENTRIES](state, value: Array<Pot>) {
+    [ENTITIES](state, value: Array<Pot>) {
         state.pots = value;
     }
 };

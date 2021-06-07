@@ -1,7 +1,7 @@
-import { Unit as Entry} from "@/model/Unit";
+import { Unit as Entity} from "@/model/Unit";
 
 export interface IUnitState {
-    units: Array<Entry>;
+    units: Array<Entity>;
 }
 
 export const state: IUnitState = {

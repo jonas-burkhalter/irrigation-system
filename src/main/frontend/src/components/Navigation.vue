@@ -2,6 +2,7 @@
     <v-navigation-drawer app :clipped="false" fixed :style="styleNavigationDrawer" v-model="value">
         <v-list>
             <template v-for="(item, key) in navigation">
+
                 <router-link class="layout-default-router-link" :key="key" :to="item.to">
                     <v-list-item exact router>
                         <v-list-item-action>
@@ -12,29 +13,30 @@
                         </v-list-item-content>
                     </v-list-item>
                 </router-link>
+
             </template>
         </v-list>
     </v-navigation-drawer>
 </template>
 
+
 <script>
-import { createNamespacedHelpers } from "vuex";
-import { AUTHENTICATE } from "../areas/authenticate/store/name";
-import { IS_AUTHENTICATED } from "../areas/authenticate/store/getters";
-import { PLANT_LIST } from '@/plugins/router';
-const { mapGetters } = createNamespacedHelpers(AUTHENTICATE);
+import { UNIT_LIST, POT_LIST } from '@/plugins/router';
 
 export default {
     computed: {
-        ...mapGetters({
-            isAuthenticated: IS_AUTHENTICATED
-        }),
         navigation() {
             let list = new Array();
                 list.push({
                     icon: "mdi-calendar-check",
-                    title: "areas.todos.navigation",
-                    to: { name: PLANT_LIST }
+                    title: "areas.unit.navigation",
+                    to: { name: UNIT_LIST }
+                });
+
+                list.push({
+                    icon: "mdi-calendar-check",
+                    title: "areas.pot.navigation",
+                    to: { name: POT_LIST }
                 });
 
             return list;
