@@ -4,6 +4,7 @@ import ch.irrigation_system.model.Moisture;
 import ch.irrigation_system.model.Plant;
 import ch.irrigation_system.model.Pot;
 import ch.irrigation_system.model.Unit;
+import ch.irrigation_system.repository.MoistureRepository;
 import ch.irrigation_system.repository.PlantRepository;
 import ch.irrigation_system.repository.PotRepository;
 import ch.irrigation_system.repository.UnitRepository;
@@ -15,11 +16,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Profile("dev")
 public class Seeding {
+    private final MoistureRepository moistureRepository;
     private final PotRepository potRepository;
     private final PlantRepository plantRepository;
     private final UnitRepository unitRepository;
 
-    public Seeding(PotRepository potRepository, PlantRepository plantRepository, UnitRepository unitRepository) {
+    public Seeding(MoistureRepository moistureRepository, PotRepository potRepository, PlantRepository plantRepository, UnitRepository unitRepository) {
+        this.moistureRepository = moistureRepository;
         this.potRepository = potRepository;
         this.plantRepository = plantRepository;
         this.unitRepository = unitRepository;
@@ -30,6 +33,10 @@ public class Seeding {
         Moisture high = new Moisture("High", 1600);
         Moisture medium = new Moisture("Medium", 1800);
         Moisture low = new Moisture("Low", 2000);
+
+        moistureRepository.save(high);
+        moistureRepository.save(medium);
+        moistureRepository.save(low);
 
         // Plant //
         Plant petersilie = new Plant(medium, "Petersilie");

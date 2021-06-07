@@ -1,15 +1,14 @@
 package ch.irrigation_system.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "moistures")
-public class Moisture {
+public class Moisture implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
@@ -27,5 +26,14 @@ public class Moisture {
 
     public Moisture() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Moisture{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

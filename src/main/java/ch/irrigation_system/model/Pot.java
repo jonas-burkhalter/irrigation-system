@@ -1,10 +1,11 @@
 package ch.irrigation_system.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "pots")
-public class Pot {
+public class Pot implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,5 +29,14 @@ public class Pot {
     }
 
     public Pot() {
+    }
+
+    @Override
+    public String toString() {
+        return "Pot{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
 package ch.irrigation_system.controller;
 
-import ch.irrigation_system.model.Pot;
+import ch.irrigation_system.model.Plant;
 import ch.irrigation_system.repository.PlantRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +15,18 @@ public class PlantController {
     }
 
     @PostMapping(value = "api/unit/{unitId}/plant")
-    public void createPlant(@PathVariable int unitId, String name) {
+    public void createPlant(@PathVariable Long unitId, String name) {
         // Plant plant = new Plant(name, unit);
         // plantRepository.save(plant);
     }
 
     @GetMapping(value = "api/unit/{unitId}/plant/{id}")
-    public Pot readPlant(@PathVariable int id) {
+    public Plant readPlant(@PathVariable Long id) {
         return plantRepository.findById(id).get();
     }
 
     @GetMapping(value = "api/unit/{unitId}/plant")
-    public Iterable<Pot> readPlant() {
+    public Iterable<Plant> readPlant() {
         return plantRepository.findAll();
     }
 
@@ -38,7 +38,7 @@ public class PlantController {
     */
 
     @DeleteMapping(value = "api/unit/{unitId}/plant/{id}")
-    public void deletePlant(@PathVariable int id) {
+    public void deletePlant(@PathVariable Long id) {
         plantRepository.deleteById(id);
     }
 }
