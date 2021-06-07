@@ -1,0 +1,21 @@
+
+unit
+    unit_id
+        event
+            water = cm/l/dm2
+        intent
+            fill = true/false
+            interval = ms
+        status
+        pot
+            alpha/beta/gamma/delta/epsilon
+                event
+                    moisture = 0-4095
+                    // pumping = true/false
+                intent
+                    pump = ms
+                status
+
+controller
+    status
+        unit_id = online/offline
