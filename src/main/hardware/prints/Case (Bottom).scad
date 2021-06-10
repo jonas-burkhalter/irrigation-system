@@ -8,6 +8,11 @@ difference() {
     translate([14, 110, 18]) {
         solar_power_in();
     }
+    translate([130,0,5]) {
+        rotate(90) {
+            plugins();
+        }
+    }
 }
 
 power_adapter = 5;
@@ -27,19 +32,40 @@ module plant_adapters() {
     union() {
         for ( i = [0:4] ) {
             translate([((adapter_width + space) * i) + offset, 0, 0]) {
-                plant_adapter();
+                m5_adapter();
             }
         }
     }
     
 }
 
-module plant_adapter() {
+module m5_adapter() {
     height = 7;
     length = 10;
     width = 24;
     
     cube([length, width, height]);  
+}
+
+/////////////
+// Plugins //
+/////////////
+module plugins() {
+    adapter_width = 10;
+    count = 5;
+    space = 5;
+    max_width = 115;
+    
+    width = (space * (count - 1)) + (adapter_width * 5);
+    offset = (max_width - width) / 2;
+    
+    union() {
+        for ( i = [0:count-1] ) {
+            translate([((adapter_width + space) * i) + offset, 0, 0]) {
+                m5_adapter();
+            }
+        }
+    }
 }
 
 //////////

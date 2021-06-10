@@ -10,7 +10,7 @@ difference()
 width = 200;
 radius = 5;
 // addon   
-border = 12;
+border = 14;
 
 //////////
 // Case //
