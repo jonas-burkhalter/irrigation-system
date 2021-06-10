@@ -17,7 +17,6 @@ public class Pot implements Serializable {
     @ManyToOne
     @JoinColumn(name = "unit_id", nullable = false)
     private Unit unit;
-
     @ManyToOne
     @JoinColumn(name = "plant_id", nullable = false)
     private Plant plant;
@@ -31,12 +30,23 @@ public class Pot implements Serializable {
     public Pot() {
     }
 
-    @Override
-    public String toString() {
-        return "Pot{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+    public Long getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public Plant getPlant() {
+        return plant;
     }
 }

@@ -15,8 +15,8 @@ public class Unit implements Serializable {
 
     private String name;
 
-  //  @OneToMany(mappedBy = "unit")
-   // private Set<Pot> pots;
+    @OneToMany(mappedBy = "unit")
+    private Set<Pot> pots;
 
     public Unit(String name) {
         this.name = name;
@@ -29,6 +29,21 @@ public class Unit implements Serializable {
     }
 
     public Unit() {
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Set<Pot> getPots() {
+        return pots;
     }
 }

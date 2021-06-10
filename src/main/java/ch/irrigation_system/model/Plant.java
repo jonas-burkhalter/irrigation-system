@@ -29,6 +29,22 @@ public class Plant implements Serializable {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Set<Pot> getPots() {
+        return pots;
+    }
+
+    public Moisture getMoisture() {
+        return moisture;
+    }
+
     @Override
     public String toString() {
         return "Plant{" +

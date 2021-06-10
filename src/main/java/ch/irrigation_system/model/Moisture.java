@@ -10,14 +10,10 @@ public class Moisture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String description;
-
     private int value;
-
     @OneToMany(mappedBy = "moisture")
     private Set<Plant> plants;
-
 
     public Moisture(String description, int value) {
         this.description = description;
@@ -26,6 +22,22 @@ public class Moisture implements Serializable {
 
     public Moisture() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public Set<Plant> getPlants() {
+        return plants;
     }
 
     @Override
