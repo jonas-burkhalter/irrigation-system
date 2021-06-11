@@ -7,33 +7,36 @@
  **                                                                                       **
  ** Libraries:  PubSubClient                                                              **
  ******************************************************************************************/
+// Config //
+#include "secrets_mqtt.h"
+#include "secrets_unit.h"
+#include "secrets_wifi.h"
+
+#include "Pot.h"
+#include "Unit.h"
 
 // Wifi //
 #include "WiFi.h"
+WiFiClient wifi_client;
 
 // MQTT //
 #include <PubSubClient.h>
-PubSubClient mqtt_client(wiFiClient);
+PubSubClient mqtt_client(wifi_client);
 
 // Unit //
 // TODO: read distance
-const unit =  {
-  bool fill: false, 
-  int interval: 60000, 
-  // int pin_: SCL,
-  // int pin_: SCA, 
-  int pin_fill: D9
-};
+// Unit unit(D9, SCA, SCL);
+Unit unit(D9, 1, 2);
 
 // Pots //
 const int count = 5;
-const pots = [
-  { String name: "alpha", int pin_pump: D2, int pin_sensor: A0, bool pump: false },
-  { String name: "beta", int pin_pump: D3, int pin_sensor: A1, bool pump: false },
-  { String name: "gamma", int pin_pump: D4, int pin_sensor: A2, bool pump: false },
-  { String name: "delta", int pin_pump: D7, int pin_sensor: A3, bool pump: false },
-  { String name: "epsilon",int pin_pump: D8, int pin_sensor: A4, bool pump: false },
-];
+Pot pots[count] = {
+  Pot("alpha", D2, A0),
+  Pot("beta", D3, A1),
+  Pot("gamma", D4, A2),
+  Pot("delta", D7, A3),
+  Pot("epsilon", D8, A4)
+};
 
 ///////////
 // Setup //
@@ -49,16 +52,15 @@ void setup() {
   }
 
   // MQTT //
-  client.setServer(MQTT_SERVER, MQTT_PORT);
-  client.setCallback(callback);
+  mqtt_client.setServer(MQTT_SERVER, MQTT_PORT);
+  mqtt_client.setCallback(callback);
 
   // Unit //
-  // pinMode dist sensor
-  // pinMode Led for fill
+  unit.setup();
 
   // Pots //
   for (int i = 0; i < count; i++) {
-    pinMode(pots[i].pin_pump, OUTPUT);
+    pots[i].setup();
   }
 }
 
@@ -67,10 +69,10 @@ void setup() {
 //////////
 void loop() {
   // MQTT
-  if (!client.connected()) {
+  if (!mqtt_client.connected()) {
     reconnect();
   }
-  client.loop();
+  mqtt_client.loop();
 
   // INTERVAL
   interval();
@@ -81,7 +83,7 @@ void loop() {
 //////////
 void callback(char* topic, byte* payload, unsigned int length) {
   char data[length+1];
-  os_memcpy(data, payload, length);
+  memcpy(data, payload, length);
   data[length] = '\0';
 
   Serial.println("MQTT - callback topic: " + String(topic) + " data: " + String(data));
@@ -90,27 +92,27 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 
 void callback_action(String topic, String data) {
-  if (String(topic) == "irrigation_system/unit/" + UNIT_ID + "/intent/fill") {
-    unit.fill = bool(data);
+  if (String(topic) == "irrigation_system/unit/" + String(UNIT_ID) + "/intent/fill") {
+    unit.setFill(bool(data));
   }
   
-  if (String(topic) == "irrigation_system/unit/" + UNIT_ID + "/intent/interval") {
-    unit.interval = int(data);
+  if (String(topic) == "irrigation_system/unit/" + String(UNIT_ID) + "/intent/interval") {
+    unit.setInterval(data.toInt());
   }
 
   for (int i = 0; i < count; i++) {
-    if (String(topic) == "irrigation_system/unit/" + UNIT_ID + "/pot/" + pots[i].name + "/intent/pump") {
-      pump(i, int(data));
+    if (String(topic) == "irrigation_system/unit/" + String(UNIT_ID) + "/pot/" + pots[i].getName() + "/intent/pump") {
+      pots[i].pump(data.toInt());
     }
   }
 }
 
 void reconnect() {
-  while (!client.connected()) {
+  while (!mqtt_client.connected()) {
     Serial.println("MQTT.reconnect");
-    if (client.connect("irrigation-system-" + UNIT_ID)) {
+    if (mqtt_client.connect(String("irrigation-system-" + String(UNIT_ID)).c_str())) {
       Serial.println("MQTT.connected");
-      client.subscribe("irrigation_system/unit/" + UNIT_ID + "/#");
+      mqtt_client.subscribe(("irrigation_system/unit/" + String(UNIT_ID) + "/#").c_str());
     } else {
       delay(1000);
     }
@@ -124,8 +126,8 @@ unsigned long previous;
 
 void interval() {
   unsigned long now = millis();
-  if ((now - previous) >= unit.interval) {
-    Serial.println("heartbeat: " + (String)now);
+  if ((now - previous) >= unit.getInterval()) {
+    Serial.println("interval: " + (String)now);
     interval_action();
     previous = now;
   }
@@ -133,18 +135,12 @@ void interval() {
 
 void interval_action() {
   // water dist
-  String topic_unit = "irrigation_system/unit/" + UNIT_ID + "/event/water"
-  // broker.publish(topic_unit, (String)analogRead(unit.pin_dist)); 
+  String topic_unit = "irrigation_system/unit/" + String(UNIT_ID) + "/event/water";
+  // mqtt_client.publish(topic_unit.c_str(), (String)analogRead(unit.pin_dist)); 
 
   // moistures
   for (int i = 0; i < count; i++) {
-    String topic_pot = "irrigation_system/unit/" + UNIT_ID + "/pot/" + pots[i].name + "/event/moisture";
-    broker.publish(topic_pot, (String)analogRead(pots[i].pin_sensor)); 
+    String topic_pot = "irrigation_system/unit/" + String(UNIT_ID) + "/pot/" + pots[i].getName() + "/event/moisture";
+    mqtt_client.publish(topic_pot.c_str(), String(pots[i].getMoisture()).c_str()); 
   }
-}
-
-void pump(int pin, int ms) {
-  digitalWrite(pin, HIGH);
-  delay(ms);
-  digitalWrite(pin, LOW);
 }
