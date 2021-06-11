@@ -9,16 +9,16 @@ import java.util.Set;
 public class Plant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "moisture_id", nullable = false)
+    private Moisture moisture;
 
     private String name;
 
     @OneToMany(mappedBy = "plant")
     private Set<Pot> pots;
-
-    @ManyToOne
-    @JoinColumn(name = "moisture_id", nullable = false)
-    private Moisture moisture;
 
     public Plant(Moisture moisture, String name) {
         this.moisture = moisture;
@@ -26,30 +26,25 @@ public class Plant implements Serializable {
     }
 
     public Plant() {
-
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Set<Pot> getPots() {
-        return pots;
-    }
-
     public Moisture getMoisture() {
         return moisture;
     }
 
-    @Override
-    public String toString() {
-        return "Plant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Pot> getPots() {
+        return pots;
     }
 }

@@ -1,46 +1,49 @@
 package ch.irrigation_system.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "units")
-public class Unit implements Serializable {
+public class Unit {
+    private String description;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    private String description;
+    private long id;
 
     private String name;
 
     @OneToMany(mappedBy = "unit")
     private Set<Pot> pots;
 
-    public Unit(String name) {
-        this.name = name;
+    public Unit() {
     }
 
-    public Unit(int id, String description, String name) {
-        this.id = id;
+    public Unit(String description, String name) {
         this.description = description;
         this.name = name;
     }
 
-    public Unit() {
-    }
 
     public String getDescription() {
         return description;
     }
 
-    public int getId() {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Pot> getPots() {

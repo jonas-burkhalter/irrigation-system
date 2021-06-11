@@ -9,19 +9,21 @@ import java.util.Set;
 public class Moisture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+
     private String description;
-    private int value;
+
     @OneToMany(mappedBy = "moisture")
     private Set<Plant> plants;
+
+    private int value;
+
+    public Moisture() {
+    }
 
     public Moisture(String description, int value) {
         this.description = description;
         this.value = value;
-    }
-
-    public Moisture() {
-
     }
 
     public Long getId() {
@@ -32,20 +34,19 @@ public class Moisture implements Serializable {
         return description;
     }
 
-    public int getValue() {
-        return value;
-    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public Set<Plant> getPlants() {
         return plants;
     }
 
-    @Override
-    public String toString() {
-        return "Moisture{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", value=" + value +
-                '}';
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }
