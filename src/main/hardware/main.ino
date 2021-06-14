@@ -107,10 +107,18 @@ void callback_action(String topic, String data) {
   }
 }
 
+bool connect() {
+  return mqtt_client.connect(
+      String("irrigation-system-" + String(UNIT_ID)).c_str(),
+      MQTT_USERNAME,
+      MQTT_PASSWORD
+    );
+}
+
 void reconnect() {
   while (!mqtt_client.connected()) {
     Serial.println("MQTT.reconnect");
-    if (mqtt_client.connect(String("irrigation-system-" + String(UNIT_ID)).c_str())) {
+    if (connect()) {
       Serial.println("MQTT.connected");
       mqtt_client.subscribe(("irrigation_system/unit/" + String(UNIT_ID) + "/#").c_str());
     } else {
