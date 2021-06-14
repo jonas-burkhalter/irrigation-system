@@ -15,13 +15,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("dev")
-public class SeedingSensorAdministration {
+public class Seeding {
     private final MoistureRepository moistureRepository;
     private final PotRepository potRepository;
     private final PlantRepository plantRepository;
     private final UnitRepository unitRepository;
 
-    public SeedingSensorAdministration(MoistureRepository moistureRepository, PotRepository potRepository, PlantRepository plantRepository, UnitRepository unitRepository) {
+    public Seeding(MoistureRepository moistureRepository, PotRepository potRepository, PlantRepository plantRepository, UnitRepository unitRepository) {
         this.moistureRepository = moistureRepository;
         this.potRepository = potRepository;
         this.plantRepository = plantRepository;

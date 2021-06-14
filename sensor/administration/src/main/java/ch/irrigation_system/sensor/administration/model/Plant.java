@@ -1,12 +1,11 @@
 package ch.irrigation_system.sensor.administration.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "plants")
-public class Plant implements Serializable {
+public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
