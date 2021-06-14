@@ -1,44 +1,56 @@
 package ch.irrigation_system.controller;
 
+import ch.irrigation_system.controller.dto.PlantDto;
 import ch.irrigation_system.model.Plant;
+import ch.irrigation_system.model.Pot;
 import ch.irrigation_system.repository.PlantRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping(path = "/api/plant")
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+@RestController
+@RequestMapping(path = "/api/plants")
 public class PlantController {
-    private final PlantRepository plantRepository;
+    private final PlantRepository repository;
 
-    public PlantController(PlantRepository plantRepository) {
-        this.plantRepository = plantRepository;
+    public PlantController(PlantRepository repository) {
+        this.repository = repository;
     }
 
-    @PostMapping(value = "api/unit/{unitId}/plant")
-    public void createPlant(@PathVariable Long unitId, String name) {
-        // Plant plant = new Plant(name, unit);
-        // plantRepository.save(plant);
+    @PostMapping
+    public void create(String description, String name) throws Exception {
+        throw new Exception("Not implemented");
+        // Plant plant = new Plant(description, name);
+        // repository.save(plant);
     }
 
-    @GetMapping(value = "api/unit/{unitId}/plant/{id}")
-    public Plant readPlant(@PathVariable Long id) {
-        return plantRepository.findById(id).get();
+    @GetMapping(value = "/{id}")
+    public PlantDto read(@PathVariable long id) {
+        Plant plant = repository.findById(id).get();
+        return new PlantDto(plant);
     }
 
-    @GetMapping(value = "api/unit/{unitId}/plant")
-    public Iterable<Plant> readPlant() {
-        return plantRepository.findAll();
+    @GetMapping
+    public List<PlantDto> read() {
+        return StreamSupport
+                .stream(repository.findAll().spliterator(), false)
+                .map(PlantDto::new)
+                .collect(Collectors.toList());
     }
 
-    /*
-    @PutMapping(value = "{id}")
-    public void updatePlant(@PathVariable int unitId, @PathVariable int id, String name) {
-        // return irrigationSystem.getUnit(id);
-    }
-    */
+    @PutMapping(value = "/{id}")
+    public void update(@PathVariable long id, String name) {
+        Plant plant = repository.findById(id).get();
 
-    @DeleteMapping(value = "api/unit/{unitId}/plant/{id}")
-    public void deletePlant(@PathVariable Long id) {
-        plantRepository.deleteById(id);
+        plant.setName(name);
+
+        repository.save(plant);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable long id) {
+        repository.deleteById(id);
     }
 }

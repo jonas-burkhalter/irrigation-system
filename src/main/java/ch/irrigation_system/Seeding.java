@@ -58,25 +58,25 @@ public class Seeding {
         plantRepository.save(salbei);
 
         // Units //
-        Unit unit_links = new Unit("Links");
-        Unit unit_rechts = new Unit("Rechts");
+        Unit unit_links = new Unit("description", "Links");
+        Unit unit_rechts = new Unit("description", "Rechts");
 
         unitRepository.save(unit_links);
         unitRepository.save(unit_rechts);
 
         // Pots //
-        Pot pot_petersilie = new Pot("Petersilie", unit_links, petersilie);
-        Pot pot_oregano = new Pot("Oregano", unit_links, oregano);
-        Pot pot_majoran = new Pot("Majoran", unit_links, majoran);
+        Pot pot_petersilie = new Pot("description", "Petersilie", unit_links, petersilie);
+        Pot pot_oregano = new Pot("description", "Oregano", unit_links, oregano);
+        Pot pot_majoran = new Pot("description", "Majoran", unit_links, majoran);
 
         potRepository.save(pot_petersilie);
         potRepository.save(pot_oregano);
         potRepository.save(pot_majoran);
 
-        Pot pot_rosmarin = new Pot("Rosmarin", unit_rechts, rosemary);
-        Pot pot_thymian = new Pot("Thymian", unit_rechts, thymine);
-        Pot pot_schnittlauch = new Pot("Schnittlauch", unit_rechts, schnittlauch);
-        Pot pot_salbei = new Pot("Salbei", unit_rechts, salbei);
+        Pot pot_rosmarin = new Pot("description", "Rosmarin", unit_rechts, rosemary);
+        Pot pot_thymian = new Pot("description", "Thymian", unit_rechts, thymine);
+        Pot pot_schnittlauch = new Pot("description", "Schnittlauch", unit_rechts, schnittlauch);
+        Pot pot_salbei = new Pot("description", "Salbei", unit_rechts, salbei);
 
         potRepository.save(pot_rosmarin);
         potRepository.save(pot_thymian);
