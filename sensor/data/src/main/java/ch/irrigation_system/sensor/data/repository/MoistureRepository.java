@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface MoistureRepository extends CrudRepository<Moisture, Long> {
-    List<Moisture> findByUnitAndPotAndDatetimeBetween(String unit, String pot, Date from, Date to);
+    List<Moisture> findByUnitAndPotAndDatetimeBetweenOrderByDatetimeDesc(String unit, String pot, Date from, Date to);
 }

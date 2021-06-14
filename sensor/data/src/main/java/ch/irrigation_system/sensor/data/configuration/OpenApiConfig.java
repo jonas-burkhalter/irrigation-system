@@ -1,4 +1,4 @@
-package ch.irrigation_system.sensor.administration.controller.config;
+package ch.irrigation_system.sensor.data.configuration;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -16,7 +16,7 @@ public class OpenApiConfig {
                 .components(new Components())
                 .info(
                         new Info()
-                                .title("Irrigation-System (Sensor-Administration) API")
-                                .description("This is the sensor-administration API documentation of the irrigation-system "));
+                                .title("Irrigation-System (Sensor-Data) API")
+                                .description("This is the sensor-data API documentation of the irrigation-system "));
     }
 }

@@ -13,11 +13,13 @@ public class MqttBaseClientService {
     @Bean
     public IMqttClient mqttClient(@Value("${mqtt.clientId}") String clientId,
                                   @Value("${mqtt.hostname}") String hostname,
-                                  @Value("${mqtt.port}") int port) throws MqttException {
+                                  @Value("${mqtt.password}")String password,
+                                  @Value("${mqtt.port}") int port,
+                                  @Value("${mqtt.username}")String username) throws MqttException {
 
         IMqttClient mqttClient = new MqttClient("tcp://" + hostname + ":" + port, clientId);
 
-        mqttClient.connect(mqttConnectOptions());
+        mqttClient.connect(mqttConnectOptions(username, password));
         mqttClient.publish(willTopic, new MqttMessage("online".getBytes()));
 
         return mqttClient;
@@ -25,8 +27,14 @@ public class MqttBaseClientService {
 
     @Bean
     @ConfigurationProperties(prefix = "mqtt")
-    public MqttConnectOptions mqttConnectOptions() {
+    public MqttConnectOptions mqttConnectOptions(@Value("${mqtt.password}")String password, @Value("${mqtt.username}")String username) {
         MqttConnectOptions options = new MqttConnectOptions();
+
+        if (!username.isBlank()){
+            options.setUserName(username);
+            options.setPassword(password.toCharArray());
+        }
+
         options.setWill(willTopic, "offline".getBytes(), 1, true);
         return options;
     }
